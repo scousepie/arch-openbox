@@ -1,0 +1,104 @@
+Arch Install Notes
+
+1. boot install media
+
+   $ loadkeys uk    ----> sets keyboard layout
+
+2. check internet connection
+
+   $ ping -c 3 google.com
+
+3. Partition disk
+
+   $ fdisk -l      ----->find device name i.e /dev/sda
+   $ cfdisk /dev/XXX  ----->replace XXX with name of dev
+
+  Choose the dos partition table.
+  Partition your disk to your preferance, I'm using the traditional root/home/swap method.
+  Delete all existing partitions so there is one block of free space.
+  For root partition (sda1), select new, primary, size, beginning, toggle bootable.
+  For swap partition (sda2), select new, primary, size 2048MB, end.
+  For home partition (sda3), select new, primary, size: whatever is left.
+  Select write, type yes, and quit. We are done creating our partitions.
+
+4. Make file systems.
+
+  Format root and home to ext4:
+
+  $ mkfs.ext4 /dev/sda1
+  $ mkfs.ext4 /dev/sda3
+
+  Make a swap file and turn swap on:
+
+  $ mkswap /dev/sda2
+  $ swapon /dev/sda2
+
+  Now we will mount our root and home partitions:
+
+  $ mount /dev/sda1 /mnt
+  $ mkdir /mnt/home
+  $ mount /dev/sda3 /mnt/home
+
+  check instructions in File:'wifi setup' if needed
+
+5. Install base system:
+
+  $ pacstrap /mnt base base-devel
+
+  $ genfstab /mnt >> /mnt/etc/fstab  ------>Create a file system table
+
+  $ nano /mnt/etc/fstab  ------->Check that fstab was created.
+
+6. Chroot into new system to set it up:
+
+  $ arch-chroot /mnt
+
+  $ passwd  ------>Create a root password. DO NOT FORGET IT !!!
+
+  $ nano /etc/locale.gen  ----->Set up your time zone and locales
+
+     Uncomment desired locales en_GB.UTF-8 UTF-8
+     Save and quit file
+
+  $ locale-gen   ------>generate the locales
+  $ echo LANG=en_GB.UTF-8 > /etc/locale.conf
+  $ export LANG=en_GB.UTF-8
+  $ echo KEYMAP=uk > /etc/vconsole.conf
+
+ For the time zone make a symbolic link to zone file
+
+  $ ln -s /usr/share/zoneinfo/Europe/London /etc/localtime
+
+ Set hostname for computer
+  $ echo hostname > /etc/hostname  ----->Set up a hostname
+  $ nano /etc/hosts
+    Add these lines to file
+    127.0.0.1	localhost
+    ::1		localhost
+    127.0.0.1	hostname.localdomain hostname       # change hostname to whatever you set it to
+
+ # arch wiki says no need to do this step already done during pacstrap 
+ # $ mkinitcpio -p linux  ------>Create an initial ramdisk environment
+                           
+  If installing using wifi ignore the download and install grub, follow instructions in File:'wifisetup'
+
+  $ pacman -S networkmanager
+  $ systemctl enable NetworkManager
+  $ pacman -S wireless_tools dialog              # try without this
+
+ Download and install grub:
+
+  $ pacman -S grub
+  $ grub-install /dev/sda
+  $ grub-mkconfig -o /boot/grub/grub.cfg
+
+  $ exit    ------->leave chroot environment
+
+7.Unmount partitions
+
+  $ umount /mnt/home
+  $ umount /mnt
+
+  $reboot
+
+Congratulations, you have now installed Arch Linux!
