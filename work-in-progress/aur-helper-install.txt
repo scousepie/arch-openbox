@@ -1,0 +1,65 @@
+##############################################################
+Install yay
+
+ $ git clone https://aur.archlinux.org/yay.git
+ $ cd yay
+ $ makepkg -si
+
+ To enable color output.
+
+ $ sudo vim /etc/pacman.conf
+
+ Uncomment Color in misc options save and exit 
+
+##############################################################
+##############################################################
+Install aurman
+
+ $ git clone https://aur.archlinux.org/aurman.git
+ $ cd aurman
+ $ makepkg -si
+
+
+ Fixing PGP signature error
+
+If you get
+
+aurman_sources git repo ... FAILED (unknown public key 465022E743D71E39)
+==> ERROR: One or more PGP signatures could not be verified!
+
+Many AUR packages contain lines to enable validating downloaded packages though the use of a PGP key. This establishes a level of trust between the software author and anyone who downloads the software - if you trust the key, and the download validates against the key, then you can trust the download.
+
+Pacman has its own keyring for system packages in the repos. This means pacman will trust Manjaro and Arch packager keys.
+
+Your user starts with an empty keyring. That is, you trust noone’s keys. When you run makepkg you run it as your normal user, so if the PKGBUILD file contains a PGP key validation will fail because you don’t trust the key - you have to import the key into your keyring first.
+
+This is easy. Open a terminal and type:
+
+ $ gpg --recv-key $KEYID
+
+where $KEYID is the ID of the key you want to import.
+
+Now when you run makepkg (directly or via your AUR helper) the downloaded file will be validated and all will be well.
+
+If validation still fails then the file is invalid.
+##############################################################
+
+##############################################################
+
+****Yaourt is now unsupported*******
+****DO NOT USE**********************
+Install yaourt
+
+# to be done as normal user
+
+1. install wget git
+2. mkdir ~/builds
+3. cd ~/builds
+4. git clone https://aur.archlinux.org/package-query-git.git
+5. cd package-query-git
+6. makepkg -sri
+7. cd ~/builds
+8. git clone https://aur.archlinux.org/yaourt.git
+9. cd yaourt
+10. makepkg -sri
+##############################################################
