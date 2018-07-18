@@ -1,0 +1,141 @@
+########################################
+1 ==> Login as root
+########################################
+
+  user = root
+  password = from base install
+
+########################################
+2 ==> Restart network
+########################################
+
+  [Wired Connection]
+  $ ip addr   ------>Check ip address
+
+  [Wireless connection]
+  follow steps in wifi setup
+
+
+########################################
+3 ==> Configure repositories
+########################################
+
+  $ nano /etc/pacman.conf
+
+  Uncomment these two lines:
+   [multilib]
+   Include = /etc/pacman.d/mirrorlist
+
+  Sync pacman and the repositories:
+   pacman -Syy
+   pacman -Syu
+
+########################################
+4 ==> Add user
+########################################
+
+  $ useradd -m -g users -G wheel -s /bin/bash <username>   ----->Change username to actual name
+  $ passwd <username>   ------>create password
+
+ Configure sudo for all users in wheel group
+  $ EDITOR=nano visudo
+   uncomment the following line %wheel ALL=(ALL) ALL
+   save and exit
+
+  Logout out of root account
+  $ exit
+  Login with user account just created
+
+  test internet connection and that sudo works
+  $sudo pacman -Syu
+  
+########################################
+5 ==> Install AUR-helpers
+########################################
+
+  Install yay
+  -----------
+
+  $ git clone https://aur.archlinux.org/yay.git
+  $ cd yay
+  $ makepkg -si
+  
+  To enable color output.
+
+  $ sudo nano /etc/pacman.conf
+
+Uncomment Color in misc options save and exit 
+
+-----------------------------------------------------------
+
+  Install aurman
+  --------------
+
+  $ pacman -S git
+  $ git clone https://aur.archlinux.org/aurman.git
+  $ cd aurman
+  $ makepkg -si
+
+
+  Fixing PGP signature error
+
+  If you get
+
+aurman_sources git repo ... FAILED (unknown public key 465022E743D71E39)
+==> ERROR: One or more PGP signatures could not be verified!
+
+  Many AUR packages contain lines to enable validating downloaded packages though the use of a PGP key. This establishes a level of trust between the software author and anyone who downloads the software - if you trust the key, and the download validates against the key, then you can trust the download.
+
+  Pacman has its own keyring for system packages in the repos. This means pacman will trust Manjaro and Arch packager keys.
+
+  Your user starts with an empty keyring. That is, you trust noone’s keys. When you run makepkg you run it as your normal user, so if the PKGBUILD file contains a PGP key validation will fail because you don’t trust the key - you have to import the key into your keyring first.
+
+ This is easy. Open a terminal and type:
+
+ $ gpg --recv-key $KEYID
+
+ where $KEYID is the ID of the key you want to import.
+
+  Now when you run makepkg (directly or via your AUR helper) the downloaded file will be validated and all will be well.
+
+  If validation still fails then the file is invalid.
+##############################################################
+
+
+
+
+
+	4. Install xorg environment
+
+	$ pacman -S xorg-server xorg-server-utils xorg-xinit
+	$ pacman -S xorg-twm xorg-xclock xterm
+	$ startx  ------->test its working
+	to close xorg type exit in any of the open windows
+
+5. Install DE(desktop environment)
+
+	$ pacman -S xfce4 xfce4-goodies
+
+	$ startxfce4 ----->To start
+
+	6. install openbox
+
+	$ sudo pacman -S openbox tint2 nitrogen oblogout
+	$ sudo pacman -S lxappearance
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

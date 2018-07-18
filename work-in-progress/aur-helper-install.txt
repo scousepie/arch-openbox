@@ -7,7 +7,7 @@ Install yay
 
  To enable color output.
 
- $ sudo vim /etc/pacman.conf
+ $ sudo nano /etc/pacman.conf
 
  Uncomment Color in misc options save and exit 
 

@@ -86,6 +86,10 @@ Arch Install Notes
   $ systemctl enable NetworkManager
   $ pacman -S wireless_tools dialog              # try without this
 
+  Install openssh
+
+  $ pacman -S openssh
+
  Download and install grub:
 
   $ pacman -S grub
