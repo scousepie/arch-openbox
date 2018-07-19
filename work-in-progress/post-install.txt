@@ -53,6 +53,9 @@
 5 ==> Install AUR-helpers
 ########################################
 
+  Firstly install git
+  $ pacman -S git
+
   Install yay
   -----------
 
@@ -71,7 +74,6 @@ Uncomment Color in misc options save and exit
   Install aurman
   --------------
 
-  $ pacman -S git
   $ git clone https://aur.archlinux.org/aurman.git
   $ cd aurman
   $ makepkg -si
