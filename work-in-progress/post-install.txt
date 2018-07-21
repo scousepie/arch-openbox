@@ -50,7 +50,17 @@
   $sudo pacman -Syu
   
 ########################################
-5 ==> Install AUR-helpers
+5 ==> Install Reflector
+########################################
+
+  $ sudo pacman -S reflector
+  Backup the current mirrorlist
+  $ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
+  create new mirrorlist
+
+
+########################################
+6 ==> Install AUR-helpers
 ########################################
 
   Firstly install git
@@ -117,8 +127,6 @@ aurman_sources git repo ... FAILED (unknown public key 465022E743D71E39)
 5. Install DE(desktop environment)
 
 	$ pacman -S xfce4 xfce4-goodies
-
-	$ startxfce4 ----->To start
 
 	6. install openbox
 
