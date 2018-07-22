@@ -66,6 +66,15 @@
   test internet connection and that sudo works
   $sudo pacman -Syu
 
+  Although the above sets up reflector to update pacman mirrorlist being able to run
+  it manually is sometimes needed if downloads are slow.
+  $ nano ~/.bashrc
+  Add next line to bottom of file 
+  alias mirror='reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
+  Save and exit from nano
+  $ source ~/.bashrc
+  now typing mirror in bash terminal should update mirrorlist
+
 
 ########################################
 6 ==> Install AUR-helpers
