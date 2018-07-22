@@ -13,7 +13,8 @@
   $ ip addr   ------>Check ip address
 
   [Wireless connection]
-  follow steps in wifi setup
+
+  ***For Dell Inspiron wi-fi instructions are in section 7.They are down there because other things need to be installed and setup first.***
 
 
 ########################################
@@ -30,6 +31,7 @@
    pacman -Syy
    pacman -Syu
 
+
 ########################################
 4 ==> Add user
 ########################################
@@ -42,29 +44,33 @@
    uncomment the following line %wheel ALL=(ALL) ALL
    save and exit
 
-  Logout out of root account
-  $ exit
-  Login with user account just created
-
-  test internet connection and that sudo works
-  $sudo pacman -Syu
   
 ########################################
 5 ==> Install Reflector
 ########################################
 
-  $ sudo pacman -S reflector
-  Backup the current mirrorlist
-  $ sudo cp /etc/pacman.d/mirrorlist /etc/pacman.d/mirrorlist.bak
-  create new mirrorlist
+  ***This section must be done while still logged in as root account***
+  $ pacman -S git
+
+  Clone repo containing install scripts
+  Make sure <username> in the destination path matches the user created in step above
+  $ git clone https://github.com/scousepie/arch-openbox /home/<username>/arch-openbox
+  $ cd /home/<username>/arch-openbox/reflector
+  run script reflector.sh
+  $ ./reflector.sh
+
+  Logout out of root account
+  $ exit
+  Login with user account created in step 4
+
+  test internet connection and that sudo works
+  $sudo pacman -Syu
 
 
 ########################################
 6 ==> Install AUR-helpers
 ########################################
 
-  Firstly install git
-  $ pacman -S git
 
   Install yay
   -----------
@@ -114,38 +120,27 @@ aurman_sources git repo ... FAILED (unknown public key 465022E743D71E39)
 ##############################################################
 
 
+########################################
+7 ==> Dell inspiron wi-fi setup
+########################################
 
+ install b43-classic wireless drivers 
+ $ yay b43
+ Unplug ethernet cable before rebooting
+ $ reboot
+ nmcli comes installed with NetworkManager which should already be installed  
+ $ nmcli device wifi list
+ Insert correct <SSID> and <password> for the network you want to connect to.
+ $ nmcli device wifi connect <SSID> password <password>
+ Sould get confirmation to confirm connection, just to make sure run following command and check wireless interface (usually starts with w) for ip address.
+ $ip addr
 
+########################################
+8 ==> Installing everything else
+########################################
 
-	4. Install xorg environment
-
-	$ pacman -S xorg-server xorg-server-utils xorg-xinit
-	$ pacman -S xorg-twm xorg-xclock xterm
-	$ startx  ------->test its working
-	to close xorg type exit in any of the open windows
-
-5. Install DE(desktop environment)
-
-	$ pacman -S xfce4 xfce4-goodies
-
-	6. install openbox
-
-	$ sudo pacman -S openbox tint2 nitrogen oblogout
-	$ sudo pacman -S lxappearance
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+  To install everything else just cd into the arch-openbox directory that you cloned in step 5, then just follow the scripts in order.
+  To run a script make sure you are in the directory that contains the script you wamt to run and enter the following command:
+  $ ./<scriptname.sh>
+  remeber to change <scriptname.sh> to the actual scriptname
 
