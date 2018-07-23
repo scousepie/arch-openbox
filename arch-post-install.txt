@@ -145,7 +145,17 @@ aurman_sources git repo ... FAILED (unknown public key 465022E743D71E39)
  $ip addr
 
 ########################################
-8 ==> Installing everything else
+8 ==> Installing xorg environment
+########################################
+
+  $ sudo pacman -S xorg-server xorg-xinit xorg-twm xterm
+  Confirm and accept all default options
+  Test by running startx
+  $ startx
+  type exit in first window to return to command line
+
+########################################
+9 ==> Installing everything else
 ########################################
 
   To install everything else just cd into the arch-openbox directory that you cloned in step 5, then just follow the scripts in order.
