@@ -16,7 +16,6 @@ sudo pacman -S lightdm --noconfirm --needed
 sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed
 sudo pacman -S openbox --noconfirm --needed
 sudo systemctl enable lightdm.service
-#sudo systemctl set-default graphical.target
 
 
 #Remove anything you do not like from the installed applications
