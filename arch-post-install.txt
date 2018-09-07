@@ -49,31 +49,19 @@
 5 ==> Install Reflector
 ########################################
 
-  ***This section must be done while still logged in as root account***
-  $ pacman -S git
-
-  Clone repo containing install scripts
-  Make sure <username> in the destination path matches the user created in step above
-  $ git clone https://github.com/scousepie/arch-openbox /home/<username>/arch-openbox
-  $ cd /home/<username>/arch-openbox/reflector
-  run script reflector.sh
-  $ ./reflector.sh
-
   Logout out of root account
   $ exit
   Login with user account created in step 4
 
-  test internet connection and that sudo works
-  $sudo pacman -Syu
+  Install git
+  $ pacman -S git
 
-  Although the above sets up reflector to update pacman mirrorlist being able to run
-  it manually is sometimes needed if downloads are slow.
-  $ nano ~/.bashrc
-  Add next line to bottom of file 
-  alias mirror='reflector --protocol https --latest 50 --number 20 --sort rate --save /etc/pacman.d/mirrorlist'
-  Save and exit from nano
-  $ source ~/.bashrc
-  now typing mirror in bash terminal should update mirrorlist
+  Clone repo containing install scripts
+  Make sure <username> in the destination path matches the user created in step above
+  $ git clone https://github.com/scousepie/arch-openbox 
+  $ cd arch-openbox/reflector
+  run script reflector-install.sh, must be run as sudo 
+  $ sudo ./reflector.sh
 
 
 ########################################
