@@ -14,7 +14,7 @@ package="obkey"
 if pacman -Qi $package &> /dev/null; then
 
 	echo "################################################################"
-	echo "################## "$package" is already installed"
+	echo "     "$package" is already installed"
 	echo "################################################################"
 
 else
@@ -36,7 +36,7 @@ else
 	if pacman -Qi $package &> /dev/null; then
 
 	echo "################################################################"
-	echo "#########  "$package" has been installed"
+	echo "     "$package" has been installed"
 	echo "################################################################"
 
 	else

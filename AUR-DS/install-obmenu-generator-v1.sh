@@ -1,17 +1,10 @@
 #!/bin/bash
 set -e
-##################################################################################################################
-# Author	:	Erik Dubois
-# Website	:	https://www.erikdubois.be
-# Website	:	https://www.arcolinux.info
-# Website	:	https://www.arcolinux.com
-# Website	:	https://www.arcolinuxd.com
-# Website	:	https://www.arcolinuxforum.com
-##################################################################################################################
-#
-#   DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.
-#
-##################################################################################################################
+##########################################################################################
+#                                                                                        #
+#           DO NOT JUST RUN THIS. EXAMINE AND JUDGE. RUN AT YOUR OWN RISK.               #
+#                                                                                        #
+##########################################################################################
 
 package="obmenu-generator"
 
@@ -21,26 +14,21 @@ package="obmenu-generator"
 if pacman -Qi $package &> /dev/null; then
 
 	echo "################################################################"
-	echo "################## "$package" is already installed"
+	echo "     "$package" is already installed"
 	echo "################################################################"
 
 else
 
 	#checking which helper is installed
-	if pacman -Qi yaourt &> /dev/null; then
+	if pacman -Qi yay &> /dev/null; then
 
-		echo "Installing with yaourt"
-		yaourt -S --noconfirm $package
+		echo "Installing with yay"
+		yay -S --noconfirm $package
 
-	elif pacman -Qi pacaur &> /dev/null; then
+	elif pacman -Qi aurman &> /dev/null; then
 
-		echo "Installing with pacaur"
-		pacaur -S --noconfirm --noedit  $package
-
-	elif pacman -Qi packer &> /dev/null; then
-
-		echo "Installing with packer"
-		packer -S --noconfirm --noedit  $package
+		echo "Installing with aurman"
+		aurman -S --noconfirm $package
 
 	fi
 
@@ -48,7 +36,7 @@ else
 	if pacman -Qi $package &> /dev/null; then
 
 	echo "################################################################"
-	echo "#########  "$package" has been installed"
+	echo "     "$package" has been installed"
 	echo "################################################################"
 
 	else

@@ -18,7 +18,7 @@ sudo pacman -S --noconfirm --needed openbox-themes
 sudo pacman -S --noconfirm --needed obconf 
 sudo pacman -S --noconfirm --needed lxappearance-obconf
 sudo pacman -S --noconfirm --needed oblogout
-sudo systemctl enable lightdm.service
+sudo systemctl enable lxdm.service
 
 
 #Remove anything you do not like from the installed applications
