@@ -12,9 +12,12 @@ echo "and run the alias - mirror in the terminal"
 echo "#################################################"
 
 sudo pacman -Syyu
-sudo pacman -S lightdm --noconfirm --needed
-sudo pacman -S lightdm-gtk-greeter lightdm-gtk-greeter-settings --noconfirm --needed
-sudo pacman -S openbox --noconfirm --needed
+sudo pacman -S --noconfirm --needed lxdm
+sudo pacman -S --noconfirm --needed openbox 
+sudo pacman -S --noconfirm --needed openbox-themes
+sudo pacman -S --noconfirm --needed obconf 
+sudo pacman -S --noconfirm --needed lxappearance-obconf
+sudo pacman -S --noconfirm --needed oblogout
 sudo systemctl enable lightdm.service
 
 
