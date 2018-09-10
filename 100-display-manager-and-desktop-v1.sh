@@ -18,6 +18,9 @@ sudo pacman -S --noconfirm --needed openbox-themes
 sudo pacman -S --noconfirm --needed obconf 
 sudo pacman -S --noconfirm --needed lxappearance-obconf
 sudo pacman -S --noconfirm --needed oblogout
+sudo pacman -S --noconfirm --needed compton
+sudo pacman -S --noconfirm --needed tint2
+sudo pacman -S --noconfirm --needed nitrogen
 sudo systemctl enable lxdm.service
 
 
