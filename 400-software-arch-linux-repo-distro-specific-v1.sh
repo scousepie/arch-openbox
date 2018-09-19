@@ -10,6 +10,7 @@ set -e
 
 sudo pacman -S --noconfirm --needed compton
 sudo pacman -S --noconfirm --needed ffmpegthumbnailer
+sudo pacman -S --noconfirm --needed gnome-themes-extra
 sudo pacman -S --noconfirm --needed gsimplecal
 sudo pacman -S --noconfirm --needed gvfs
 sudo pacman -S --noconfirm --needed libopenraw
