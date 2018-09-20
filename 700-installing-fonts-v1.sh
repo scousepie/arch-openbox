@@ -25,6 +25,7 @@ sudo pacman -S --noconfirm --needed arc-gtk-theme
 sudo pacman -S --noconfirm --needed arc-icon-theme
 sudo pacman -S --noconfirm --needed elementary-icon-theme
 sudo pacman -S --noconfirm --needed numix-gtk-theme
+sudo pacman -S --noconfirm --needed gtk-engine-murrine
 
 echo "################################################################"
 echo "####       Fonts and themes have been installed             ####"
